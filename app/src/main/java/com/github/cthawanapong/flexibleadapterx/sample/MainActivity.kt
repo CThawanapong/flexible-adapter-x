@@ -3,7 +3,7 @@ package com.github.cthawanapong.flexibleadapterx.sample
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.cthawanapong.flexibleadapterx.sample.adapter.ShowcaseAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         recyclerView.apply {
             adapter = mAdapter
-            layoutManager = GridLayoutManager(this@MainActivity, 1, LinearLayoutManager.VERTICAL, false)
+            layoutManager = GridLayoutManager(this@MainActivity, 1, RecyclerView.VERTICAL, false)
         }
     }
 
