@@ -1,0 +1,4 @@
+<resources>
+    <string name="flexible_error_loading">Sorry, Something went wrong.</string>
+    <string name="flexible_retry">Retry</string>
+</resources>

@@ -1,0 +1,65 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: 'maven-publish'
+
+android {
+    compileSdkVersion 28
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        debug {
+
+        }
+        release {
+            minifyEnabled false
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
+}
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+}
+
+dependencies {
+    //Kotlin
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compileOnly 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5'
+
+    //Support Library
+    compileOnly "androidx.appcompat:appcompat:1.0.0-alpha3"
+    compileOnly "androidx.cardview:cardview:1.0.0-alpha3"
+    compileOnly "androidx.recyclerview:recyclerview:1.0.0-alpha3"
+    compileOnly "com.google.android.material:material:1.0.0-alpha3"
+    compileOnly 'androidx.constraintlayout:constraintlayout:1.1.1'
+
+    //Test
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+}
+
+androidExtensions {
+    experimental = true
+}
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'

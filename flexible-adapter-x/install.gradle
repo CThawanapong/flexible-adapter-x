@@ -1,0 +1,39 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.cthawanapong'
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'com.github.cthawanapong'
+                artifactId 'flexible-adapter-x'
+
+                name 'Flexible Adapter X'
+                description 'Base customisable recyclerview adapter for Android X component'
+                url 'https://github.com/CThawanapong/flexible-adapter-x'
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'FeaLouS'
+                        name 'Chavit Thawanapong'
+                        email 'c.thawanapong@gmail.com'
+                    }
+                }
+                scm {
+                    connection 'https://github.com/CThawanapong/flexible-adapter-x.git'
+                    developerConnection 'https://github.com/CThawanapong/flexible-adapter-x.git'
+                    url 'https://github.com/CThawanapong/flexible-adapter-x'
+
+                }
+            }
+        }
+    }
+}

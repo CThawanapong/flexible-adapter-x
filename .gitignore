@@ -1,0 +1,20 @@
+*.iml
+.gradle
+/local.properties
+.DS_Store
+/captures
+.externalNativeBuild
+*.log
+*.idea/
+
+# Built application files
+*.apk
+output.json
+
+# Generated files
+bin/
+gen/
+
+build/
+.idea/instapk.xml
+instapk.log*
