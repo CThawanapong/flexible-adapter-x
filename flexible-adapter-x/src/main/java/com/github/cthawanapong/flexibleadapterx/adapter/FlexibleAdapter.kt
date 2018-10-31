@@ -15,10 +15,11 @@ import com.github.cthawanapong.flexibleadapterx.model.FlexibleViewType
 import com.github.cthawanapong.flexibleadapterx.model.interfaces.FlexibleAdapterFunction
 import com.github.cthawanapong.flexibleadapterx.model.interfaces.FlexibleErrorCallback
 import com.github.cthawanapong.flexibleadapterx.model.interfaces.IFlexibleViewType
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.channels.Channel
-import kotlinx.coroutines.experimental.channels.actor
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.actor
+import kotlinx.coroutines.launch
 
 /**
  * Created by CThawanapong on 30/1/2018 AD.
@@ -51,7 +52,7 @@ abstract class FlexibleAdapter(val context: Context) : RecyclerView.Adapter<Recy
     private var isLoadingShow = false
     private var isErrorShow = false
     private var isEmptyShow = false
-    private val eventActor by lazy { actor<List<IFlexibleViewType>>(capacity = Channel.CONFLATED) { for (list in channel) internalUpdate(list) } }
+    private val eventActor by lazy { GlobalScope.actor<List<IFlexibleViewType>>(capacity = Channel.CONFLATED) { for (list in channel) internalUpdate(list) } }
     private val diffCallback by lazy(LazyThreadSafetyMode.NONE) { DiffCallback() }
     private val onRetryClickListener by lazy { View.OnClickListener { v -> onRetryClick(v) } }
 
@@ -140,7 +141,7 @@ abstract class FlexibleAdapter(val context: Context) : RecyclerView.Adapter<Recy
         })
         updateInternalFlag(newList)
 
-        launch(UI) {
+        GlobalScope.launch(Dispatchers.Main) {
             result.dispatchUpdatesTo(this@FlexibleAdapter)
             listViewType.apply {
                 clear()
